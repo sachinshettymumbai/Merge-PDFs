@@ -1,0 +1,21 @@
+import os,sys
+from PyPDF2 import PdfFileMerger
+from tkinter.filedialog import askopenfilename
+from tkinter import filedialog
+
+
+SelectedPDFs =filedialog.askopenfilenames(initialdir="C:/",title = "Select PDF files",filetypes= (("PDF files","*.pdf"),("all files","*.*")))
+
+
+Destinationdir = filedialog.askdirectory(initialdir="C:/",title = "Select Destination folder" )
+
+Destinationdir=Destinationdir+ "/"
+
+merger= PdfFileMerger()
+
+for item in SelectedPDFs :
+    if item.endswith('pdf'):
+        merger.append(item)
+
+merger.write(Destinationdir + "final.pdf")
+merger.close()
